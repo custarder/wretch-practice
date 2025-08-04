@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.shortcuts import render
+from django.contrib import admin
 
 def about(request):
     return render(request, "about.html")
@@ -26,5 +27,6 @@ def home(request):
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("about/", about),
-    path("", home)
+    path("", home),
+    path("admin/", admin.site.urls)
 ]
