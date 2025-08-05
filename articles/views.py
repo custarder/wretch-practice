@@ -7,9 +7,13 @@ def index(request):
         title = request.POST["title"]
         content = request.POST["content"]
         Article.objects.create(title=title, content=content)
-        return redirect("pages:home")
+        return redirect("articles:index")
     else: 
-        return render(request, "pages/articles.html")
+        articles = Article.objects.all().order_by("-id")
+        return render(request, "pages/articles.html", {"articles": articles})
 
 def new(request):
     return render(request, "pages/new.html")
+
+def detail(request, id):
+    return render(request, "pages/detail.html", {"id": id})

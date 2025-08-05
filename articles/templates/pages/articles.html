@@ -1,6 +1,17 @@
 {% extends "layouts/default.html" %}
 
 {% block content %}
-<h1>文章列表</h1>
-<button class="btn"><a href="{% url 'articles:new' %}">新增文章</a></button>
+<div class="flex flex-row">
+    <h1 class="basis-2/3">文章列表</h1>
+    <button class="btn basis-1/3"><a href="{% url 'articles:new' %}">新增文章</a></button>
+</div>
+
+{% for article in articles %}
+<article class="flex w-full flex-col lg:flex-row my-10">
+    <h2 class="card bg-base-300 rounded-box grid h-32 flex-1 place-items-center">標題：{{ article.title }}</h2>
+    <div class="divider lg:divider-horizontal"></div>
+    <p class="card bg-base-300 rounded-box grid h-32 flex-1 place-items-center">內文：{{ article.content|truncatewords:30 }}</p>
+</article>
+{% endfor %}
+
 {% endblock %}
