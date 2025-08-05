@@ -1,10 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib import admin
-from .views import about, home
 
 
 urlpatterns = [
-    path("about/", about),
-    path("", home),
+    path("", include("pages.urls")),
     path("admin/", admin.site.urls)
 ]
