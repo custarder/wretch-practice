@@ -1,7 +1,17 @@
 {% extends "layouts/default.html" %}
 
 {% block content %}
-<h1 class="text-3xl my-4">{{ article.title}}</h1>
-<p class="text-3xl my-4">{{ article.content|linebreaks }}</p>
+<div class="flex gap-2 items-center">
+    <a href="{% url 'articles:edit' article.id %}" class="btn btn-xs btn-success">編輯</a>
+    <form action="{% url 'articles:detail' article.id %}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        {% csrf_token %}
+        <button class="btn btn-xs btn-error">刪除<button>
+    </form>
+</div>
 
+<h1 class="text-3xl my-4">{{ article.title}}</h1>
+<article>
+    <p class="text-3xl my-4">{{ article.content|linebreaks }}</p>
+</article>
 {% endblock %}

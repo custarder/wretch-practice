@@ -1,0 +1,12 @@
+<div class="container mx-auto py-4" x-data="{show: true}">
+    {% if messages %}
+    {% for m in messages %}
+        <template x-if="show">
+            <div role="alert" class="alert alert-{{ m.tags }}  flex justify-between mb-4">
+                <span>{{ m}}</span>
+                <button class="btn btn-xs" @click="show=false">X</button>
+            </div>
+        </template>
+    {% endfor %}
+    {% endif %}
+</div>
