@@ -3,7 +3,7 @@
     {% for m in messages %}
         <template x-if="show">
             <div role="alert" class="alert alert-{{ m.tags }}  flex justify-between mb-4">
-                <span>{{ m}}</span>
+                <span>{{ m }}</span>
                 <button class="btn btn-xs" @click="show=false">X</button>
             </div>
         </template>

@@ -6,3 +6,4 @@ class Article(models.Model):
         return self.title
     title = models.CharField(max_length=200, null=False)
     content = models.TextField(null=True)
+    is_published = models.BooleanField(default=False, null=False)

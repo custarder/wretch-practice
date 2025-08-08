@@ -5,14 +5,15 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     messages.success(request, "新增成功！！")
-    if request.POST:
-        title = request.POST["title"]
-        content = request.POST["content"]
-        Article.objects.create(title=title, content=content)
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        is_published = request.POST.get("is_published")
+        Article.objects.create(title=title, content=content, is_published=is_published)
         messages.success(request, "新增成功")
         return redirect("articles:index")
     else: 
-        articles = Article.objects.all().order_by("-id")
+        articles = Article.objects.order_by("-id")
         return render(request, "pages/articles.html", {"articles": articles})
 
 def new(request):
@@ -22,10 +23,12 @@ def detail(request, id):
     article = get_object_or_404(Article, pk=id)
     if request.POST:
          if request.POST["_method"] == "patch":
-              title = request.POST["title"]
-              content = request.POST["content"]
+              title = request.POST.get("title")
+              content = request.POST.get("content")
+              is_published = request.POST.get("is_published") == "on"
               article.title = title
               article.content = content
+              article.is_published = is_published
               article.save()
               messages.success(request, "更新成功")
               return redirect("articles:detail", article.id)
