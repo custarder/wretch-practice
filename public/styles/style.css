@@ -1245,6 +1245,16 @@
   .rounded-box {
     border-radius: var(--radius-box);
   }
+  .alert-error {
+    border-color: var(--color-error);
+    color: var(--color-error-content);
+    --alert-color: var(--color-error);
+  }
+  .alert-success {
+    border-color: var(--color-success);
+    color: var(--color-success-content);
+    --alert-color: var(--color-success);
+  }
   .bg-base-300 {
     background-color: var(--color-base-300);
   }
